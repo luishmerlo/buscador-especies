@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscador de espécies</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" 
+          integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" 
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <main>
+        <h1 id="titulo">Buscador de espécies</h1>
+        <form id="formulario">
+            <div id="pesquisa">
+                <input type="text" id="inputPrincipal" placeholder="Nome científico (ex.: Panthera leo)">
+                <button type="submit" class="btn" id="btnBuscar">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+            </div>
+        </form>
+
+        <div id="resultado">
+            <div class="containerResultado" id="foto">
+                <h3>Foto</h3>
+                <img id="fotoAnimal" alt="Foto da espécie" />
+            </div>
+
+            <div class="containerResultado" id="classCientifica">
+                <h3>Classificação científica</h3>
+                <p id="nomeCientifico"></p>
+                <p id="reino"></p>
+                <p id="filo"></p>
+                <p id="classe"></p>
+                <p id="ordem"></p>
+                <p id="familia"></p>
+                <p id="genero"></p>
+                <p id="especie"></p>
+            </div>
+
+            <div class="containerResultado" id="status">
+                <h3>Status de conservação</h3>
+                <div class="containerBolinhas">
+                    <p id="statusConservacao"></p>
+                    <div id="bolinhasDeStatus">
+                        <div class="bolinha" id="EX">EX</div>
+                        <div class="bolinha" id="EW">EW</div>
+                        <div class="bolinha" id="CR">CR</div>
+                        <div class="bolinha" id="EN">EN</div>
+                        <div class="bolinha" id="VU">VU</div>
+                        <div class="bolinha" id="NT">NT</div>
+                        <div class="bolinha" id="LC">LC</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="containerResultado" id="mapa">
+                <h3>Mapa de ocorrências</h3>
+                <div id="mapaDistribuicao">
+                    <div id="loadingMapa" class="loadingContainer">
+                        <div class="spinner"></div>
+                        <p>Carregando mapa...</p>
+                    </div>
+                </div>
+                <p id="linkMapaDetalhado">
+                    <a href="#" target="_blank">Ver mapa detalhado (GBIF)</a>
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        Dados fornecidos por: 
+        <a href="https://www.gbif.org" target="_blank">GBIF</a> | 
+        <a href="https://www.wikidata.org" target="_blank">Wikidata</a> | 
+        <a href="https://www.wikimedia.org" target="_blank">Wikimedia</a>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
