@@ -82,4 +82,4 @@ index.html
 ```
 
 ## Licença
-Projeto acadêmico e de portfólio.
+Projeto desenvolvido para fins de portfólio e aprendizado.
