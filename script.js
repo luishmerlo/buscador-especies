@@ -139,22 +139,31 @@ document.addEventListener('DOMContentLoaded', function() {
         fotoAnimal.style.display = 'none';
 
         try {
-            const nomeBusca = encodeURIComponent(nomeSimples);
+            const nomeBusca = encodeURIComponent(nomeSimples.replace(/ /g, "_"));
             const url = `https://en.wikipedia.org/api/rest_v1/page/summary/${nomeBusca}`;
-            
+    
             const response = await fetch(url);
             const data = await response.json();
-            
-            if (data.thumbnail && data.thumbnail.source) {
-                const imgUrl = data.thumbnail.source.replace(/\/\d+px-/, '/800px-');
-                fotoAnimal.setAttribute('src', imgUrl);
-                fotoAnimal.style.display = 'block';
-                fotoContainer.style.display = 'block';
-            } else if (data.originalimage && data.originalimage.source) {
-                fotoAnimal.setAttribute('src', data.originalimage.source);
-                fotoAnimal.style.display = 'block';
-                fotoContainer.style.display = 'block';
+
+            let imgUrl = null;
+
+    
+            if (data?.originalimage?.source) {
+                imgUrl = data.originalimage.source;
+            } 
+   
+            else if (data?.thumbnail?.source) {
+                imgUrl = data.thumbnail.source;
             }
+
+            if (imgUrl) {
+                fotoAnimal.src = imgUrl;
+                fotoAnimal.style.display = 'block';
+                fotoContainer.style.display = 'block';
+            } else {
+                console.log("Nenhuma imagem disponível para:", nomeSimples);
+            }
+
         } catch (error) {
             console.error("Erro ao buscar imagem na Wikipedia:", error);
         }
